@@ -11,6 +11,8 @@ public class Item
     public string Name { get; set; }
     public bool IsFavorite { get; set; }
     public string Quality { get; set; }
-    public IEnumerable<RecipeItem> Recipe { get; set; }
+
+    public IEnumerable<RecipeItem>? Recipe { get; set; }
+    public IEnumerable<ItemPosition>? Positions { get; set; }
 
 }
