@@ -1,3 +1,6 @@
+using MarketShuffleService.Data_Access;
+using Microsoft.EntityFrameworkCore;
+
 namespace MarketShuffleService;
 
 public class Program
@@ -7,6 +10,11 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
+        var connectionString = "Server=localhost;Database=market_shuffle;Uid=root;Pwd=cheeba9696;";
+        builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(
+            connectionString
+            ));
+
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

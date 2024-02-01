@@ -10,6 +10,11 @@ public class AppDbContext : DbContext
 
     }
 
+    public DbSet<Item> Items { get; set; }
+    public DbSet<RecipeItem> RecipeItems { get; set; }
+    public DbSet<ItemPosition> Positions { get; set; }
+
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
