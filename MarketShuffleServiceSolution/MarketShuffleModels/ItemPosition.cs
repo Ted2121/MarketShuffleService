@@ -11,4 +11,6 @@ public class ItemPosition
     public string Details { get; set; }
     public int StackSize { get; set; }
     public long Date { get; set; }
+    public string ParentItemId { get; set; }
+    public Item ParentItem { get; set; }
 }
