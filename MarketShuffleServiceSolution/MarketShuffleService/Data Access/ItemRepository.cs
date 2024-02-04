@@ -14,11 +14,6 @@ public class ItemRepository : IItemRepository
 
     public async Task<string> CreateItemAsync(Item item)
     {
-        if (_appDbContext.Items.Any(c => c.Name == item.Name))
-        {
-            throw new Exception($"Item with team number: {item.Name} already exists.");
-        }
-
         if (item == null)
         {
             throw new ArgumentNullException(nameof(item));
@@ -123,7 +118,7 @@ public class ItemRepository : IItemRepository
 
             itemToUpdate.Name = item.Name;
             itemToUpdate.IsFavorite = item.IsFavorite;
-            itemToUpdate.Quality = item.Name;
+            itemToUpdate.Quality = item.Quality;
 
             return await SaveChangesAsync();
         }
