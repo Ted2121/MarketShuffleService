@@ -80,6 +80,19 @@ public class ItemPositionRepository : IItemPositionRepository
         }
     }
 
+    public async Task<IEnumerable<ItemPosition>> GetAllItemPositionsByParentId(string id)
+    {
+        try
+        {
+            return await _appDbContext.ItemPositions.Where(x => x.ParentItemId == id).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all itemPositions. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<ItemPosition> GetItemPositionByIdAsync(string id)
     {
         if (id == null)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MarketShuffleService.Data_Access;
 
-public class RecipeRecipeItemRepository : IRecipeRecipeItemRepository
+public class RecipeItemRepository : IRecipeItemRepository
 {
     private readonly AppDbContext _appDbContext;
 
