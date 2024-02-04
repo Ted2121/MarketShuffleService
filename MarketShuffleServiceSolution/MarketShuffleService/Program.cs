@@ -10,11 +10,14 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        var connectionString = "Server=localhost;Database=market_shuffle;Uid=root;Pwd=cheeba9696;";
+        var connectionString = "Server=localhost;Database=market_shuffle;Uid=root;Pwd=Cheeba969621!;";
         builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(
             connectionString
             ));
 
+        builder.Services.AddScoped<IItemRepository, ItemRepository>();
+
+        builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
         builder.Services.AddControllers();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

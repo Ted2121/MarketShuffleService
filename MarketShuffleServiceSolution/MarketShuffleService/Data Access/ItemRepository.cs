@@ -16,7 +16,7 @@ public class ItemRepository : IItemRepository
     {
         if (_appDbContext.Items.Any(c => c.Name == item.Name))
         {
-            throw new Exception($"Core with team number: {item.Name} already exists.");
+            throw new Exception($"Item with team number: {item.Name} already exists.");
         }
 
         if (item == null)

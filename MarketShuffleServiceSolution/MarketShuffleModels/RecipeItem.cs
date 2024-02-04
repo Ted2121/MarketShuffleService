@@ -11,5 +11,5 @@ public class RecipeItem
     public string Name { get; set; }
     public int Quantity { get; set; }
     public string ParentItemId { get; set; }
-    public Item ParentItem { get; set; }
+    public Item? ParentItem { get; set; }
 }
