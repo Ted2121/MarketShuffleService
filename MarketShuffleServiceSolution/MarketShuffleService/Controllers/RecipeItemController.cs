@@ -33,6 +33,20 @@ public class RecipeItemController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<RecipeItemDto>>(recipeItems));
     }
 
+    [Route("allForItem")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<RecipeItemDto>>> GetAllRecipeItemsByParentIdAsync(string id)
+    {
+        var recipeItems = await _recipeItemRepository.GetAllRecipeItemsByParentId(id);
+
+        if (recipeItems == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(_mapper.Map<IEnumerable<RecipeItemDto>>(recipeItems));
+    }
+
     [Route("{id}")]
     [HttpGet]
     public async Task<ActionResult<RecipeItemDto>> GetRecipeItemByIdAsync(string id)

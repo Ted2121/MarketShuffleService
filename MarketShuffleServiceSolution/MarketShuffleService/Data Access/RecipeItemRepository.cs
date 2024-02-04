@@ -80,6 +80,19 @@ public class RecipeItemRepository : IRecipeItemRepository
         }
     }
 
+    public async Task<IEnumerable<RecipeItem>> GetAllRecipeItemsByParentId(string id)
+    {
+        try
+        {
+            return await _appDbContext.RecipeItems.Where(x => x.ParentItemId == id).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all recipeItems. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<RecipeItem> GetRecipeItemByIdAsync(string id)
     {
         if (id == null)

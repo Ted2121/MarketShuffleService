@@ -9,4 +9,5 @@ public interface IRecipeItemRepository
     Task<string> CreateRecipeItemAsync(RecipeItem item);
     Task<bool> UpdateRecipeItemAsync(RecipeItem item);
     Task<bool> DeleteRecipeItemAsync(string id);
+    Task<IEnumerable<RecipeItem>> GetAllRecipeItemsByParentId(string id);
 }
