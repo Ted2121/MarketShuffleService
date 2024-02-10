@@ -2,5 +2,5 @@
 
 public class RecipeDto
 {
-    public IEnumerable<RecipeItemDto> Recipe { get; set; }
+    public IEnumerable<RecipeItemDto>? Recipe { get; set; }
 }
