@@ -4,6 +4,7 @@ using MarketShuffleService.Data_Access;
 using MarketShuffleService.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Configuration;
 
 namespace MarketShuffleService.Controllers;
 [Route("api/[controller]")]
@@ -102,7 +103,7 @@ public class ItemController : ControllerBase
 
     [HttpPut]
     [Route("favorite/{id}/{value}")]
-    public async Task<ActionResult> SetFavorite([FromQuery]string id, [FromQuery]bool value )
+    public async Task<ActionResult<bool>> SetFavorite([FromQuery]string id, [FromQuery]bool value )
     {
         if (!ModelState.IsValid)
         {
@@ -115,11 +116,13 @@ public class ItemController : ControllerBase
 
         if (item == null) return NotFound();
 
+        item.IsFavorite = value;
+
         if (!await _itemRepository.UpdateItemAsync(item))
         {
             return BadRequest();
         }
 
-        return NoContent();
+        return Ok(value);
     }
 }
