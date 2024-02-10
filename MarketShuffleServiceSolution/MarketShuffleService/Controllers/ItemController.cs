@@ -99,4 +99,27 @@ public class ItemController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpPut]
+    [Route("favorite/{id}/{value}")]
+    public async Task<ActionResult> SetFavorite([FromQuery]string id, [FromQuery]bool value )
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        if(id == null) return BadRequest("invalid id");
+
+        var item = await _itemRepository.GetItemByIdAsync(id);
+
+        if (item == null) return NotFound();
+
+        if (!await _itemRepository.UpdateItemAsync(item))
+        {
+            return BadRequest();
+        }
+
+        return NoContent();
+    }
 }

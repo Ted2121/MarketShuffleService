@@ -2,7 +2,6 @@
 using MarketShuffleModels;
 using MarketShuffleService.Data_Access;
 using MarketShuffleService.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketShuffleService.Controllers;
@@ -62,23 +61,26 @@ public class RecipeItemController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateRecipeItemAsync(RecipeItemDto recipeItemDto)
+    public async Task<ActionResult<int>> CreateRecipeAsync(RecipeDto recipeDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
-        recipeItemDto.Id = Guid.NewGuid().ToString();
+        if (recipeDto == null) return BadRequest("invalid recipe");
 
-        var returnedId = await _recipeItemRepository.CreateRecipeItemAsync(_mapper.Map<RecipeItem>(recipeItemDto));
-
-        if (returnedId == null)
+        foreach (var recipe in recipeDto.Recipe)
         {
-            return BadRequest();
+            recipe.Id = Guid.NewGuid().ToString();
+            var returnedId = await _recipeItemRepository.CreateRecipeItemAsync(_mapper.Map<RecipeItem>(recipe));
+            if (returnedId == null)
+            {
+                return BadRequest();
+            }
         }
 
-        return Ok(returnedId);
+        return Ok();
     }
 
     [Route("{id}")]
@@ -113,4 +115,5 @@ public class RecipeItemController : ControllerBase
 
         return NoContent();
     }
+
 }

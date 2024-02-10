@@ -23,6 +23,10 @@ namespace MarketShuffleService.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
 
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<bool>("IsFavorite")
                         .HasColumnType("tinyint(1)");
 
@@ -62,7 +66,7 @@ namespace MarketShuffleService.Migrations
 
                     b.HasIndex("ParentItemId");
 
-                    b.ToTable("Positions");
+                    b.ToTable("ItemPositions");
                 });
 
             modelBuilder.Entity("MarketShuffleModels.RecipeItem", b =>

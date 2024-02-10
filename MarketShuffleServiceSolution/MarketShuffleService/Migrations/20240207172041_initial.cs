@@ -4,7 +4,7 @@
 
 namespace MarketShuffleService.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,7 +18,8 @@ namespace MarketShuffleService.Migrations
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
                     Name = table.Column<string>(type: "longtext", nullable: false),
                     IsFavorite = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    Quality = table.Column<string>(type: "longtext", nullable: false)
+                    Quality = table.Column<string>(type: "longtext", nullable: false),
+                    Category = table.Column<string>(type: "longtext", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +28,7 @@ namespace MarketShuffleService.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Positions",
+                name: "ItemPositions",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "varchar(255)", nullable: false),
@@ -38,9 +39,9 @@ namespace MarketShuffleService.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Positions", x => x.Id);
+                    table.PrimaryKey("PK_ItemPositions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Positions_Items_ParentItemId",
+                        name: "FK_ItemPositions_Items_ParentItemId",
                         column: x => x.ParentItemId,
                         principalTable: "Items",
                         principalColumn: "Id",
@@ -70,8 +71,8 @@ namespace MarketShuffleService.Migrations
                 .Annotation("MySQL:Charset", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Positions_ParentItemId",
-                table: "Positions",
+                name: "IX_ItemPositions_ParentItemId",
+                table: "ItemPositions",
                 column: "ParentItemId");
 
             migrationBuilder.CreateIndex(
@@ -83,7 +84,7 @@ namespace MarketShuffleService.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Positions");
+                name: "ItemPositions");
 
             migrationBuilder.DropTable(
                 name: "RecipeItems");

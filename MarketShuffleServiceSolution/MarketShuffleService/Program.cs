@@ -15,7 +15,21 @@ public class Program
             connectionString
             ));
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy(name: "AllowSpecificOrigins",
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:5173") 
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+        });
+
         builder.Services.AddScoped<IItemRepository, ItemRepository>();
+        builder.Services.AddScoped<IRecipeItemRepository, RecipeItemRepository>();
+        builder.Services.AddScoped<IItemPositionRepository, ItemPositionRepository>();
+
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -36,7 +50,7 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
+        app.UseCors("AllowSpecificOrigins");
 
         app.MapControllers();
 
