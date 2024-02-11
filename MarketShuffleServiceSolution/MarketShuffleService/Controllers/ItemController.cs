@@ -61,6 +61,20 @@ public class ItemController : ControllerBase
         return Ok(_mapper.Map<ItemDto>(item));
     }
 
+    [Route("search/{search}")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ItemDto>>> GetItemsBySearchString(string search)
+    {
+        var items = await _itemRepository.SearchItemByName(search);
+
+        if (!items.Any())
+        {
+            return NotFound();
+        }
+
+        return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
+    }
+
     [HttpPost]
     public async Task<ActionResult<string>> CreateItemAsync(ItemDto itemDto)
     {

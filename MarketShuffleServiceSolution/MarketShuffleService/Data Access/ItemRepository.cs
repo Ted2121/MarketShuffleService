@@ -39,6 +39,20 @@ public class ItemRepository : IItemRepository
         }
     }
 
+    public async Task<IEnumerable<Item>> SearchItemByName(string searchString)
+    {
+        try
+        {
+            return await _appDbContext.Items
+                .Where(item => item.Name.Contains(searchString))
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed getting items with search string: {searchString}. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<bool> DeleteItemAsync(string id)
     {
         if (id == null)

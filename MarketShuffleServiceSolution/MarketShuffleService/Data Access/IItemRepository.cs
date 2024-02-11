@@ -10,4 +10,5 @@ public interface IItemRepository
     Task<string> CreateItemAsync(Item item);
     Task<bool> UpdateItemAsync(Item item);
     Task<bool> DeleteItemAsync(string id);
+    Task<IEnumerable<Item>> SearchItemByName(string searchString);
 }
