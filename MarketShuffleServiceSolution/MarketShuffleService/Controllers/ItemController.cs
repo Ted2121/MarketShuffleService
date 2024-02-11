@@ -20,11 +20,24 @@ public class ItemController : ControllerBase
         _mapper = mapper;
     }
 
-    [Route("all")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ItemDto>>> GetAllItemsAsync()
     {
         var items = await _itemRepository.GetAllItemsAsync();
+
+        if (items == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
+    }
+
+    [Route("category/{category}")]
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ItemDto>>> GetAllItemsByCategoryAsync(string category)
+    {
+        var items = await _itemRepository.GetAllItemsByCategoryAsync(category);
 
         if (items == null)
         {
@@ -49,7 +62,7 @@ public class ItemController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateItemAsync(ItemDto itemDto)
+    public async Task<ActionResult<string>> CreateItemAsync(ItemDto itemDto)
     {
         if (!ModelState.IsValid)
         {

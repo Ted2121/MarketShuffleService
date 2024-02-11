@@ -80,6 +80,19 @@ public class ItemRepository : IItemRepository
         }
     }
 
+    public async Task<IEnumerable<Item>> GetAllItemsByCategoryAsync(string category)
+    {
+        try
+        {
+            return await _appDbContext.Items.Where(x => x.Category == category).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all items for category {category}. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<Item> GetItemByIdAsync(string id)
     {
         if (id == null)

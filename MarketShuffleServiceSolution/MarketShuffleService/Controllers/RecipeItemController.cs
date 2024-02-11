@@ -61,7 +61,7 @@ public class RecipeItemController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateRecipeAsync(RecipeDto recipeDto)
+    public async Task<ActionResult> CreateRecipeAsync(RecipeDto recipeDto)
     {
         if (!ModelState.IsValid)
         {
