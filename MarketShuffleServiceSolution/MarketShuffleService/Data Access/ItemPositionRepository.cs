@@ -130,7 +130,10 @@ public class ItemPositionRepository : IItemPositionRepository
             }
 
             itemPositionToUpdate.Details = itemPosition.Details;
-            itemPositionToUpdate.StackSize = itemPosition.StackSize;
+            itemPositionToUpdate.One = itemPosition.One;
+            itemPositionToUpdate.Ten = itemPosition.Ten;
+            itemPositionToUpdate.Hundred = itemPosition.Hundred;
+            itemPositionToUpdate.Quality = itemPosition.Quality;
             itemPositionToUpdate.Date = itemPosition.Date;
 
             return await SaveChangesAsync();

@@ -33,7 +33,7 @@ public class ItemPositionController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ItemPositionDto>>(itemPositions));
     }
 
-    [Route("allForItem")]
+    [Route("allForItem/{id}")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ItemPositionDto>>> GetAllItemPositionsByParentIdAsync(string id)
     {

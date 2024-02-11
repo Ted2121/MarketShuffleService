@@ -44,7 +44,6 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Details).IsRequired();
-            entity.Property(e => e.StackSize).IsRequired();
             entity.Property(e => e.Date).IsRequired();
             entity.Property(e => e.ParentItemId).IsRequired();
 
