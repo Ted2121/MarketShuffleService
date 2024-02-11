@@ -145,7 +145,6 @@ public class ItemRepository : IItemRepository
 
             itemToUpdate.Name = item.Name;
             itemToUpdate.IsFavorite = item.IsFavorite;
-            itemToUpdate.Quality = item.Quality;
 
             return await SaveChangesAsync();
         }

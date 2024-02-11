@@ -23,7 +23,6 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.IsFavorite).IsRequired();
-            entity.Property(e => e.Quality).IsRequired();
             entity.Property(e => e.Category).IsRequired();
         });
 
