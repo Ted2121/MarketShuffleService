@@ -60,6 +60,30 @@ public class RecipeItemController : ControllerBase
         return Ok(_mapper.Map<RecipeItemDto>(recipeItem));
     }
 
+    [Route("parent/{id}")]
+    [HttpGet]
+    public async Task<ActionResult<RecipeDto>> GetRecipeByParentIdAsync(string id)
+    {
+        var recipe = await _recipeItemRepository.GetAllRecipeItemsByParentId(id);
+        List<RecipeItemDto> recipeItems = new List<RecipeItemDto>();
+
+        foreach (var recipeItem in recipe)
+        {
+            var recipeDto = _mapper.Map<RecipeItemDto>(recipeItem);
+            recipeItems.Add(recipeDto);
+        }
+
+        if (recipe == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(new RecipeDto()
+        {
+            Recipe = recipeItems
+        });
+    }
+
     [HttpPost]
     public async Task<ActionResult> CreateRecipeAsync(RecipeDto recipeDto)
     {
@@ -99,6 +123,8 @@ public class RecipeItemController : ControllerBase
 
         return NoContent();
     }
+
+
 
     [HttpPut]
     public async Task<ActionResult> UpdateRecipeItemAsync(RecipeItemDto recipeItemDto)

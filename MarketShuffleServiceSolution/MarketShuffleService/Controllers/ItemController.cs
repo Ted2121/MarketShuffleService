@@ -115,8 +115,8 @@ public class ItemController : ControllerBase
     }
 
     [HttpPut]
-    [Route("favorite/{id}/{value}")]
-    public async Task<ActionResult<bool>> SetFavorite([FromQuery]string id, [FromQuery]bool value )
+    [Route("favorite/{id}")]
+    public async Task<ActionResult<bool>> SetFavorite([FromRoute]string id, [FromBody]bool value )
     {
         if (!ModelState.IsValid)
         {
