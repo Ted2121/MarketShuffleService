@@ -144,6 +144,9 @@ public class ItemRepository : IItemRepository
             }
 
             itemToUpdate.Name = item.Name;
+            itemToUpdate.Category = item.Category;
+            itemToUpdate.Sell = item.Sell;
+            itemToUpdate.Buy = item.Buy;
             itemToUpdate.IsFavorite = item.IsFavorite;
 
             return await SaveChangesAsync();
