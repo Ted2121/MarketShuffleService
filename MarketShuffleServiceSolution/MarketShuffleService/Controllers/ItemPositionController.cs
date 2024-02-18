@@ -62,7 +62,7 @@ public class ItemPositionController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> CreateItemPositionAsync(ItemPositionDto itemPositionDto)
+    public async Task<ActionResult<string>> CreateItemPositionAsync(ItemPositionDto itemPositionDto)
     {
         if (!ModelState.IsValid)
         {
