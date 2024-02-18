@@ -14,11 +14,6 @@ public class ItemRepository : IItemRepository
 
     public async Task<string> CreateItemAsync(Item item)
     {
-        if (_appDbContext.Items.Any(c => c.Name == item.Name))
-        {
-            throw new Exception($"Core with team number: {item.Name} already exists.");
-        }
-
         if (item == null)
         {
             throw new ArgumentNullException(nameof(item));
@@ -41,6 +36,20 @@ public class ItemRepository : IItemRepository
         catch (Exception ex)
         {
             throw new Exception($"item with id: {item.Id} could not be created. Exception was {ex.Message}");
+        }
+    }
+
+    public async Task<IEnumerable<Item>> SearchItemByName(string searchString)
+    {
+        try
+        {
+            return await _appDbContext.Items
+                .Where(item => item.Name.Contains(searchString))
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed getting items with search string: {searchString}. Exception was: {ex.Message}");
         }
     }
 
@@ -85,6 +94,19 @@ public class ItemRepository : IItemRepository
         }
     }
 
+    public async Task<IEnumerable<Item>> GetAllItemsByCategoryAsync(string category)
+    {
+        try
+        {
+            return await _appDbContext.Items.Where(x => x.Category == category).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all items for category {category}. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<Item> GetItemByIdAsync(string id)
     {
         if (id == null)
@@ -123,7 +145,6 @@ public class ItemRepository : IItemRepository
 
             itemToUpdate.Name = item.Name;
             itemToUpdate.IsFavorite = item.IsFavorite;
-            itemToUpdate.Quality = item.Name;
 
             return await SaveChangesAsync();
         }

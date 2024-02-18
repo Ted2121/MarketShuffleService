@@ -9,8 +9,11 @@ public class ItemPosition
 {
     public string Id { get; set; }
     public string Details { get; set; }
-    public int StackSize { get; set; }
+    public double One { get; set; }
+    public double Ten { get; set; }
+    public double Hundred { get; set; }
     public long Date { get; set; }
+    public string Quality { get; set; }
     public string ParentItemId { get; set; }
-    public Item ParentItem { get; set; }
+    public Item? ParentItem { get; set; }
 }

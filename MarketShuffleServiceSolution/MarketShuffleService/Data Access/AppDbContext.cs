@@ -11,9 +11,8 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<Item> Items { get; set; }
+    public DbSet<ItemPosition> ItemPositions { get; set; }
     public DbSet<RecipeItem> RecipeItems { get; set; }
-    public DbSet<ItemPosition> Positions { get; set; }
-
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -24,7 +23,7 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.IsFavorite).IsRequired();
-            entity.Property(e => e.Quality).IsRequired();
+            entity.Property(e => e.Category).IsRequired();
         });
 
         modelBuilder.Entity<RecipeItem>(entity =>
@@ -44,7 +43,6 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(e => e.Id);
             entity.Property(e => e.Details).IsRequired();
-            entity.Property(e => e.StackSize).IsRequired();
             entity.Property(e => e.Date).IsRequired();
             entity.Property(e => e.ParentItemId).IsRequired();
 
