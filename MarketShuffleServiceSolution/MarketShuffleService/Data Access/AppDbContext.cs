@@ -13,6 +13,8 @@ public class AppDbContext : DbContext
     public DbSet<Item> Items { get; set; }
     public DbSet<ItemPosition> ItemPositions { get; set; }
     public DbSet<RecipeItem> RecipeItems { get; set; }
+    public DbSet<Guild> Guilds { get; set; }
+    public DbSet<Player> Players { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
