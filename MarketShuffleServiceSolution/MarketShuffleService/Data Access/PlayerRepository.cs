@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MarketShuffleService.Data_Access;
 
-public class PlayerRepository
+public class PlayerRepository : IPlayerRepository
 {
     private readonly AppDbContext _appDbContext;
 
