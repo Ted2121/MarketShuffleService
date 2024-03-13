@@ -26,6 +26,15 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Name).IsRequired();
             entity.Property(e => e.IsFavorite).IsRequired();
             entity.Property(e => e.Category).IsRequired();
+            entity.Property(e => e.RelistCount).IsRequired();
+            entity.Property(e => e.Profession).IsRequired();
+            entity.Property(e => e.CraftUntil).IsRequired();
+            entity.Property(e => e.OrderInCategory).IsRequired();
+            entity.Property(e => e.SoldCount).IsRequired();
+            entity.Property(e => e.UseFor).IsRequired();
+            entity.Property(e => e.Buy).IsRequired();
+            entity.Property(e => e.Sell).IsRequired();
+
         });
 
         modelBuilder.Entity<RecipeItem>(entity =>
