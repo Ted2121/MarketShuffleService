@@ -148,6 +148,12 @@ public class ItemRepository : IItemRepository
             itemToUpdate.Sell = item.Sell;
             itemToUpdate.Buy = item.Buy;
             itemToUpdate.IsFavorite = item.IsFavorite;
+            itemToUpdate.SoldCount = item.SoldCount;
+            itemToUpdate.Profession = item.Profession;
+            itemToUpdate.RelistCount = item.RelistCount;
+            itemToUpdate.UseFor = item.UseFor;
+            itemToUpdate.CraftUntil = item.CraftUntil;
+            itemToUpdate.OrderInCategory = item.OrderInCategory;
 
             return await SaveChangesAsync();
         }
