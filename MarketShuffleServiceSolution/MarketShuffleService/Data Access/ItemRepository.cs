@@ -19,6 +19,9 @@ public class ItemRepository : IItemRepository
             throw new ArgumentNullException(nameof(item));
         }
 
+        if (string.IsNullOrEmpty(item.Profession)) item.Profession = "Flipping";
+        if (string.IsNullOrEmpty(item.UseFor)) item.UseFor = "Flipping";
+
         try
         {
             await _appDbContext.AddAsync(item);
@@ -107,6 +110,31 @@ public class ItemRepository : IItemRepository
         }
     }
 
+    public async Task<IEnumerable<Item>> GetAllFavoriteItemsAsync()
+    {
+        try
+        {
+            return await _appDbContext.Items.Where(x => x.IsFavorite == true).ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all favorite items. Exception was: {ex.Message}");
+        }
+    }
+    public async Task<IEnumerable<Item>> GetAllProfessionsItemsAsync()
+    {
+        try
+        {
+            return await _appDbContext.Items.Where(x => x.Profession != "Flipping").ToListAsync();
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting all favorite items. Exception was: {ex.Message}");
+        }
+    }
+
     public async Task<Item> GetItemByIdAsync(string id)
     {
         if (id == null)
@@ -166,6 +194,14 @@ public class ItemRepository : IItemRepository
 
     private async Task<bool> SaveChangesAsync()
     {
-        return await _appDbContext.SaveChangesAsync() >= 0;
+        try
+        {
+            return await _appDbContext.SaveChangesAsync() >= 0;
+        }
+        catch (Exception e)
+        {
+
+            throw new Exception(e.Message);
+        }
     }
 }

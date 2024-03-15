@@ -6,6 +6,8 @@ public interface IItemRepository
 {
     Task<IEnumerable<Item>> GetAllItemsAsync();
     Task<IEnumerable<Item>> GetAllItemsByCategoryAsync(string category);
+    Task<IEnumerable<Item>> GetAllProfessionsItemsAsync();
+    Task<IEnumerable<Item>> GetAllFavoriteItemsAsync();
     Task<Item> GetItemByIdAsync(string id);
     Task<string> CreateItemAsync(Item item);
     Task<bool> UpdateItemAsync(Item item);

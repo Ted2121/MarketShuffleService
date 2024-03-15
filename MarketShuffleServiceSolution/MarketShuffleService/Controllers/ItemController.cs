@@ -33,6 +33,36 @@ public class ItemController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
     }
 
+    [Route("favorites")]
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ItemDto>>> GetAllFavoriteItemsAsync()
+    {
+        var items = await _itemRepository.GetAllFavoriteItemsAsync();
+
+        if (items == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
+    }
+
+    [Route("professions")]
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<ItemDto>>> GetAllProfessionsItemsAsync()
+    {
+        var items = await _itemRepository.GetAllProfessionsItemsAsync();
+
+        if (items == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(_mapper.Map<IEnumerable<ItemDto>>(items));
+    }
+
     [Route("category/{category}")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ItemDto>>> GetAllItemsByCategoryAsync(string category)
