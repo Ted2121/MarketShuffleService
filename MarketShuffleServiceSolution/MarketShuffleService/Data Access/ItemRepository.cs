@@ -177,9 +177,9 @@ public class ItemRepository : IItemRepository
             itemToUpdate.Buy = item.Buy;
             itemToUpdate.IsFavorite = item.IsFavorite;
             itemToUpdate.SoldCount = item.SoldCount;
-            itemToUpdate.Profession = item.Profession;
+            itemToUpdate.Profession = item.Profession ?? "Flipping";
             itemToUpdate.RelistCount = item.RelistCount;
-            itemToUpdate.UseFor = item.UseFor;
+            itemToUpdate.UseFor = item.UseFor ?? "Flipping";
             itemToUpdate.CraftUntil = item.CraftUntil;
             itemToUpdate.OrderInCategory = item.OrderInCategory;
 
