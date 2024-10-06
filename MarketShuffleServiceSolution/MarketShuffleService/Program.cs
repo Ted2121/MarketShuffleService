@@ -10,7 +10,7 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
 
         // Add services to the container.
-        var connectionString = "Server=localhost;Database=market_shuffle;Uid=root;Pwd=Cheeba969621!;";
+        var connectionString = "Server=localhost;Database=market_shuffle_2;Uid=root;Pwd=Cheeba969621!;";
         builder.Services.AddDbContext<AppDbContext>(options => options.UseMySQL(
             connectionString
             ));

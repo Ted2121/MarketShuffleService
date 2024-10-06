@@ -21,6 +21,8 @@ public class ItemRepository : IItemRepository
 
         if (string.IsNullOrEmpty(item.Profession)) item.Profession = "Flipping";
         if (string.IsNullOrEmpty(item.UseFor)) item.UseFor = "Flipping";
+        if (string.IsNullOrEmpty(item.Category)) item.Category = "None";
+
 
         try
         {
