@@ -31,7 +31,7 @@ public class RecipeListRowsController : ControllerBase
     //    return Ok(_mapper.Map<IEnumerable<RecipeListRowDto>>(recipeListRows));
     //}
 
-    [HttpGet("{recipeListId}")]
+    [HttpGet("recipeList/{recipeListId}")]
     public async Task<ActionResult<IEnumerable<RecipeListRowDto>>> GetAllRecipeListRowsByRecipeListIdAsync(string recipeListId)
     {
         if (String.IsNullOrEmpty(recipeListId))
@@ -49,7 +49,7 @@ public class RecipeListRowsController : ControllerBase
         return Ok(_mapper.Map<IEnumerable<RecipeListRowDto>>(recipeListRows));
     }
 
-    [HttpGet("{resourceName}")]
+    [HttpGet("resourceName/{resourceName}")]
     public async Task<ActionResult<IEnumerable<RecipeListRowDto>>> GetAllRecipeListRowsByResourceNameAsync(string resourceName)
     {
         if (String.IsNullOrEmpty(resourceName))

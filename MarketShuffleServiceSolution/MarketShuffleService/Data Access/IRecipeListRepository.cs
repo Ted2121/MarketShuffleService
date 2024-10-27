@@ -11,6 +11,4 @@ public interface IRecipeListRepository
     Task<bool> UpdateRecipeListAsync(RecipeList recipeList);
     Task<bool> DeleteRecipeListAsync(string id);
     Task<IEnumerable<RecipeList>> SearchRecipeListByName(string searchString);
-    Task<IEnumerable<RecipeListRow>> Get
-
 }
