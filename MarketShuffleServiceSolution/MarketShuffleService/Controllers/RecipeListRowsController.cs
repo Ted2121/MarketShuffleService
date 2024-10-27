@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MarketShuffleService.Controllers;
 
+[ApiController]
 public class RecipeListRowsController : ControllerBase
 {
     private readonly IRecipeListRowRepository _recipeListRowRepository;
