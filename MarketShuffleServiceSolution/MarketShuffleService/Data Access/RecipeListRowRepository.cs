@@ -176,6 +176,7 @@ public class RecipeListRowRepository : IRecipeListRowRepository
             rowToUpdate.Quantity = row.Quantity;
             rowToUpdate.Note = row.Note ?? "";
             rowToUpdate.Area = row.Area ?? "";
+            rowToUpdate.Done = row.Done;
             rowToUpdate.Link = String.IsNullOrEmpty(row.Link) 
                 ? ""
                 : UrlValidator.ValidateHttps(row.Link) ? row.Link : throw new ArgumentException($"Invalid URL for row {row.Id}, resource name: {row.ResourceName}, link: {row.Link}");

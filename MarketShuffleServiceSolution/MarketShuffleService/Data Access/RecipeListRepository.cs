@@ -70,13 +70,21 @@ public class RecipeListRepository : IRecipeListRepository
     {
         try
         {
-            return await _appDbContext.RecipeLists
-            .Include(r => r.Rows)
-            .ToListAsync();
+            var recipeLists = await _appDbContext.RecipeLists
+                .Include(r => r.Rows)
+                .ToListAsync();
+
+            foreach (var recipeList in recipeLists)
+            {
+                recipeList.Rows = recipeList.Rows
+                    .OrderBy(row => row.Area ?? string.Empty) // Custom handling for null Area
+                    .ToList();
+            }
+
+            return recipeLists;
         }
         catch (Exception ex)
         {
-
             throw new Exception($"Failed getting all RecipeLists. Exception was: {ex.Message}");
         }
     }
