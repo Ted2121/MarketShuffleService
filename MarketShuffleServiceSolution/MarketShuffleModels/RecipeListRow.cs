@@ -12,6 +12,7 @@ public class RecipeListRow
     public string ResourceName { get; set; }
     public string? Area { get; set; }
     public string Note { get; set; }
+    public string Link { get; set; }
     public RecipeList RecipeList { get; set; }
     public string RecipeListId { get; set; }
 }

@@ -106,6 +106,7 @@ public class AppDbContext : DbContext
             entity.Property(e => e.ResourceName).IsRequired();
             entity.Property(e => e.Area).IsRequired();
             entity.Property(e => e.Note).IsRequired();
+            entity.Property(e => e.Link).IsRequired();
 
             entity.HasOne(e => e.RecipeList)
             .WithMany(e => e.Rows)
