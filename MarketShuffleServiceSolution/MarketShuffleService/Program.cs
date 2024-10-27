@@ -31,6 +31,8 @@ public class Program
         builder.Services.AddScoped<IItemPositionRepository, ItemPositionRepository>();
         builder.Services.AddScoped<IGuildRepository, GuildRepository>();
         builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+        builder.Services.AddScoped<IRecipeListRepository, RecipeListRepository>();
+        builder.Services.AddScoped<IRecipeListRowRepository, RecipeListRowRepository>();
 
 
         builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
