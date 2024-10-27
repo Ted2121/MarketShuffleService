@@ -9,7 +9,7 @@ public interface IRecipeListRowRepository
     Task<string> CreateRecipeListRowAsync(RecipeListRow row);
     Task<bool> UpdateRecipeListRowAsync(RecipeListRow row);
     Task<bool> DeleteRecipeListRowAsync(string id);
-    Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByRecipeListId(string resourceListId);
+    Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByRecipeListId(string recipeListId);
     Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByResourceName(string resourceName);
     //Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByResourceNameFromResourceList(string resourceName, string resourceListId);
 

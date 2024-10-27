@@ -104,14 +104,17 @@ public class RecipeListRowRepository : IRecipeListRowRepository
     //    throw new NotImplementedException();
     //}
 
-    public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByParentId(string id)
+    public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByRecipeListId(string recipeListId)
     {
-        throw new NotImplementedException();
-    }
+        try
+        {
+            return await _appDbContext.RecipeListRows.Where(x => x.RecipeListId == recipeListId).ToListAsync();
+        }
+        catch (Exception ex)
+        {
 
-    public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByRecipeListId(string resourceListId)
-    {
-        throw new NotImplementedException();
+            throw new Exception($"Failed getting all recipe list rows. Exception was: {ex.Message}");
+        }
     }
 
     public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByResourceName(string resourceName)
