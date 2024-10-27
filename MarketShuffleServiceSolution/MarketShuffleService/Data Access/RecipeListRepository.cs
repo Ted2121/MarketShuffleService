@@ -20,6 +20,11 @@ public class RecipeListRepository : IRecipeListRepository
 
         try
         {
+            if (recipeList.Note == null)
+            {
+                recipeList.Note = "";
+            }
+
             await _appDbContext.AddAsync(recipeList);
             var isSaved = await SaveChangesAsync();
 
@@ -145,7 +150,7 @@ public class RecipeListRepository : IRecipeListRepository
             }
 
             recipeListToUpdate.Name = recipeList.Name;
-            recipeListToUpdate.Note = recipeList.Note;
+            recipeListToUpdate.Note = recipeList.Note ?? "";
 
             return await SaveChangesAsync();
         }
