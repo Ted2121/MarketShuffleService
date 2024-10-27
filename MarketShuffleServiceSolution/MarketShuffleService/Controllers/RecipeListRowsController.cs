@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MarketShuffleService.Controllers;
 
+[Route("api/[controller]")]
 [ApiController]
 public class RecipeListRowsController : ControllerBase
 {
