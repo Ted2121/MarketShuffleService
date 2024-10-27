@@ -119,7 +119,16 @@ public class RecipeListRowRepository : IRecipeListRowRepository
 
     public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByResourceName(string resourceName)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return await _appDbContext.RecipeListRows
+                .Where(list => list.ResourceName.Contains(resourceName))
+                .ToListAsync();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Failed getting recipe list rows with search string: {resourceName}. Exception was: {ex.Message}");
+        }
     }
 
     //public async Task<IEnumerable<RecipeListRow>> GetAllRecipeListRowsByResourceNameFromResourceList(string resourceName, string resourceListId)
