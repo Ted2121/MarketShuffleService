@@ -15,6 +15,8 @@ public class AppDbContext : DbContext
     public DbSet<RecipeItem> RecipeItems { get; set; }
     public DbSet<Guild> Guilds { get; set; }
     public DbSet<Player> Players { get; set; }
+    public DbSet<RecipeListRow> RecipeListRows { get; set; }
+    public DbSet<RecipeList> RecipeLists { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -87,6 +89,27 @@ public class AppDbContext : DbContext
             entity.HasOne(e => e.Guild)
             .WithMany(e => e.Players)
             .HasForeignKey(e => e.GuildId)
+            .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<RecipeList>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Name).IsRequired();
+            entity.Property(e => e.Note).IsRequired();
+        });
+
+        modelBuilder.Entity<RecipeListRow>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+            entity.Property(e => e.Quantity).IsRequired();
+            entity.Property(e => e.ResourceName).IsRequired();
+            entity.Property(e => e.Area).IsRequired();
+            entity.Property(e => e.Note).IsRequired();
+
+            entity.HasOne(e => e.RecipeList)
+            .WithMany(e => e.Rows)
+            .HasForeignKey(e => e.RecipeListId)
             .OnDelete(DeleteBehavior.Cascade);
         });
     }

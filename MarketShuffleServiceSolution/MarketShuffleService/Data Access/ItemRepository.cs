@@ -206,4 +206,23 @@ public class ItemRepository : IItemRepository
             throw new Exception(e.Message);
         }
     }
+
+    public async Task<Item> GetItemByNameAsync(string name)
+    {
+        if (name == null)
+        {
+            throw new ArgumentException(nameof(name));
+        }
+
+        try
+        {
+            return await _appDbContext.Items.FirstOrDefaultAsync(u => u.Name == name);
+        }
+        catch (Exception ex)
+        {
+
+            throw new Exception($"Failed getting item with name: {name}. Exception was: {ex}");
+
+        }
+    }
 }

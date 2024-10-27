@@ -9,6 +9,7 @@ public interface IItemRepository
     Task<IEnumerable<Item>> GetAllProfessionsItemsAsync();
     Task<IEnumerable<Item>> GetAllFavoriteItemsAsync();
     Task<Item> GetItemByIdAsync(string id);
+    Task<Item> GetItemByNameAsync(string name);
     Task<string> CreateItemAsync(Item item);
     Task<bool> UpdateItemAsync(Item item);
     Task<bool> DeleteItemAsync(string id);
