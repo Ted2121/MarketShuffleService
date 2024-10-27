@@ -2,7 +2,6 @@
 using MarketShuffleModels;
 using MarketShuffleService.Data_Access;
 using MarketShuffleService.DTOs;
-using MarketShuffleService.Migrations;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarketShuffleService.Controllers;
