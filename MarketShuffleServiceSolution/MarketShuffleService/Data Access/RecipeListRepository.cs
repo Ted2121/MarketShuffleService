@@ -70,7 +70,9 @@ public class RecipeListRepository : IRecipeListRepository
     {
         try
         {
-            return await _appDbContext.RecipeLists.ToListAsync();
+            return await _appDbContext.RecipeLists
+            .Include(r => r.Rows)
+            .ToListAsync();
         }
         catch (Exception ex)
         {
